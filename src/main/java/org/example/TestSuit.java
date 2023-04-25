@@ -21,7 +21,7 @@ public class TestSuit {
     static String expectedEmailMassage ="All customers can use email a friend feature.";
     static String expectedProductName = "Your Product Name is not match.";
     static String expectedTwoProductName ="You have two items to compare.";
-    static String expectedErrorMassage = "All users can vote";
+    static String expectedErrorMassage = "Your vote was successfully.";
     protected  static  WebDriver driver;
     public static void clickElement(By by){
         driver.findElement(by).click();
@@ -113,7 +113,6 @@ public class TestSuit {
         //click on register button
         clickElement(By.name("register-button"));
         driver.manage().timeouts().implicitlyWait(30,TimeUnit.SECONDS);
-
         //log in link
         clickElement(By.className("ico-login"));
         //type email
@@ -122,9 +121,8 @@ public class TestSuit {
         typeText(By.xpath("//div[@class=\"form-fields\"]/div[2]/input"),"Test1234");
         //click on login
         clickElement(By.xpath("//div[@class=\"returning-wrapper fieldset\"]/form/div[3]/button"));
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='pollanswers-2']")));
-
         //click on radio button good
         clickElement(By.xpath("//input[@id='pollanswers-2']"));
         //Click on vote
@@ -234,7 +232,7 @@ public class TestSuit {
         //get error massage
         String actualMassage = getTextFromElement(By.xpath("//div[@class=\"poll-vote-error\"]"));
         System.out.println("Error Massage:"+actualMassage);
-        Assert.assertEquals(actualMassage,expectedErrorMassage);
+        Assert.assertEquals(actualMassage,expectedErrorMassage,"Your vote was successfully.");
 
     }
 
