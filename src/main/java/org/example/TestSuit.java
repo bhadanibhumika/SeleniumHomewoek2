@@ -38,7 +38,8 @@ public class TestSuit {
     }
     @AfterMethod
    public static void closeBrowser(){
-       driver.close();}
+        //close browser
+      driver.close();}
 
     @BeforeMethod
     public static void openBrowser(){
@@ -111,15 +112,19 @@ public class TestSuit {
         typeText(By.name("ConfirmPassword"),"Test1234");
         //click on register button
         clickElement(By.name("register-button"));
+        driver.manage().timeouts().implicitlyWait(30,TimeUnit.SECONDS);
+
         //log in link
         clickElement(By.className("ico-login"));
         //type email
         typeText(By.xpath("//div[@class=\"form-fields\"]/div[1]/input"),"shyama123@gmail.com");
         //type password
         typeText(By.xpath("//div[@class=\"form-fields\"]/div[2]/input"),"Test1234");
-
         //click on login
         clickElement(By.xpath("//div[@class=\"returning-wrapper fieldset\"]/form/div[3]/button"));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='pollanswers-2']")));
+
         //click on radio button good
         clickElement(By.xpath("//input[@id='pollanswers-2']"));
         //Click on vote
@@ -148,7 +153,7 @@ public class TestSuit {
         // get the massage
         String actualMassage = getTextFromElement(By.xpath("//div[@class='result']"));
         // print for massage
-        System.out.println("My massage :"+actualMassage);
+        System.out.println(" massage is :"+actualMassage);
         //for match 2 result
         Assert.assertEquals(actualMassage,expectedRegistrationCompleteMsg,"Registration is not working");
 
@@ -201,7 +206,7 @@ public class TestSuit {
         clickElement(By.xpath("//div[@class=\"product-grid home-page-product-grid\"]/div[2]/div[4]/div/div[2]/div[3]/div[2]/button[2]"));
         //close popup  green window
         clickElement(By.xpath("//span[@class= \"close\"]"));
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id=\"bar-notification\"]/div/p/a")));
         //Click on popup window green notification
         clickElement(By.xpath("//div[@id=\"bar-notification\"]/div/p/a"));
@@ -215,7 +220,7 @@ public class TestSuit {
         clickElement(By.className("clear-list"));
         //get massage
         String actualmassage = getTextFromElement(By.className("no-data"));
-        System.out.println("My massage "+actualmassage);
+        System.out.println(" massage "+actualmassage);
         Assert.assertEquals(actualmassage,expectedTwoProductName,"You have two items to compare.");
     }
     @Test
@@ -230,9 +235,6 @@ public class TestSuit {
         String actualMassage = getTextFromElement(By.xpath("//div[@class=\"poll-vote-error\"]"));
         System.out.println("Error Massage:"+actualMassage);
         Assert.assertEquals(actualMassage,expectedErrorMassage);
-
-
-
 
     }
 
