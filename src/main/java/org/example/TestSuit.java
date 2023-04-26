@@ -43,6 +43,7 @@ public class TestSuit {
 
     @BeforeMethod
     public static void openBrowser(){
+        //open the browser
       driver = new ChromeDriver();
     //type url
        driver.get("https://demo.nopcommerce.com/");
@@ -105,18 +106,18 @@ public class TestSuit {
         //type lastname
         typeText(By.id("LastName"),"patel");
         //type email
-        typeText(By.name("Email"),"shyama123@gmail.com");
+        typeText(By.name("Email"),"shyama12@gmail.com");
         // type password
         typeText(By.id("Password"),"Test1234");
         //type conform password
         typeText(By.name("ConfirmPassword"),"Test1234");
         //click on register button
         clickElement(By.name("register-button"));
-        driver.manage().timeouts().implicitlyWait(30,TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
         //log in link
         clickElement(By.className("ico-login"));
         //type email
-        typeText(By.xpath("//div[@class=\"form-fields\"]/div[1]/input"),"shyama123@gmail.com");
+        typeText(By.xpath("//div[@class=\"form-fields\"]/div[1]/input"),"shyama12@gmail.com");
         //type password
         typeText(By.xpath("//div[@class=\"form-fields\"]/div[2]/input"),"Test1234");
         //click on login
@@ -202,6 +203,7 @@ public class TestSuit {
         clickElement(By.xpath("//span[@class= \"close\"]"));
         //Click on virtual Card
         clickElement(By.xpath("//div[@class=\"product-grid home-page-product-grid\"]/div[2]/div[4]/div/div[2]/div[3]/div[2]/button[2]"));
+        driver.manage().timeouts().implicitlyWait(30,TimeUnit.SECONDS);
         //close popup  green window
         clickElement(By.xpath("//span[@class= \"close\"]"));
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
