@@ -40,7 +40,6 @@ public class TestSuit {
    public static void closeBrowser(){
         //close browser
       driver.close();}
-
     @BeforeMethod
     public static void openBrowser(){
         //open the browser
@@ -85,8 +84,6 @@ public class TestSuit {
         clickElement(By.xpath("//div[@class='email-a-friend']"));
         //type  friend's email
         typeText(By.className("friend-email"),"rajpatel"+timestamp()+"@gmail.com");
-        //type your email
-       // typeText(By.xpath("//input[@placeholder=\"Enter your email address.\"]");
         //click send email
         clickElement(By.name("send-email"));
         //product name
